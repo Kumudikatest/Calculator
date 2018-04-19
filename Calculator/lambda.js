@@ -1,5 +1,4 @@
 let AWS = require('aws-sdk');
-let SL = require('@slappforge/slappforge-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient();
 exports.handler = function (event, context, callback) {
 
