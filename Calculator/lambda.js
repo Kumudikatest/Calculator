@@ -37,11 +37,11 @@ exports.handler = function (event, context, callback) {
 		}
 	}, function (err, data) {
 		if (err) {
-			console.log('Error ', err);
-			callback(null, err);
+			console.log('Fail');
+			//callback(null, err);
 		} else {
-			console.log('Data ', data);
-			callback(null, data);
+			console.log('Pass ');
+			//callback(null, data);
 		}
 	});
 
