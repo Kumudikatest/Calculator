@@ -26,6 +26,7 @@ exports.handler = function (event, context, callback) {
 			break;
 	}
 	event.Result = result;
+
 	ddb.put({
 		TableName: 'Calculator',
 		Item: { 'ID': id,'Result': result }
@@ -40,5 +41,5 @@ exports.handler = function (event, context, callback) {
 	});
 
 
-	//callback(null, event);
+	callback(null, event);
 }
