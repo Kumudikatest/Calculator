@@ -32,9 +32,8 @@ exports.handler = function (event, context, callback) {
 		TableName: 'Calculator',
 		Item: {
 			'ID': id,
-			'Operation': operation,
-			'Result': result
-			
+			'Result': result,
+			'Operation': operation
 		}
 	}, function (err, data) {
 		if (err) {
