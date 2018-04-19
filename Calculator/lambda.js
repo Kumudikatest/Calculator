@@ -1,6 +1,8 @@
 let AWS = require('aws-sdk');
+let SL = require('@slappforge/slappforge-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient();
 exports.handler = function (event, context, callback) {
+
 	console.log("Received request with payload", event);
 	let operation = event.Operation;
 	let id = event.ID;
@@ -29,17 +31,16 @@ exports.handler = function (event, context, callback) {
 
 	ddb.put({
 		TableName: 'Calculator',
-		Item: { 'ID': id,'Result': result }
+		Item: { 'ID': id, 'Result': result }
 	}, function (err, data) {
 		if (err) {
-			//handle error
-			console.log("Fail");
+			console.log('Error ', err);
+			callback(null, err);
 		} else {
-			//your logic goes here
-			console.log("Pass");
+			console.log('Data ', data);
+			callback(null, data);
 		}
 	});
 
-
-	callback(null, event);
+	//callback(null, event);
 }
