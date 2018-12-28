@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "Calculator/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\nexports.handler = function (event, context, callback) {\n\n\tconsole.log(\"Received request with payload\", event);\n\tlet operation = event.Operation;\n\tlet id = event.ID;\n\tlet result = null;\n\tswitch (operation) {\n\t\tcase \"Add\":\n\t\t\tresult = event.LeftParameter + event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Subtract\":\n\t\t\tresult = event.LeftParameter - event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Multiply\":\n\t\t\tresult = event.LeftParameter * event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Devide\":\n\t\t\tresult = event.LeftParameter / event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Mod\":\n\t\t\tresult = event.LeftParameter % event.RightParameter;\n\t\t\tbreak;\n\t\tdefault:\n\t\t\tresult = \"Operation Not Permitted\";\n\t\t\tbreak;\n\t}\n\tevent.Result = result;\n\n\tddb.put({\n\t\tTableName: 'Calculator',\n\t\tItem: {\n\t\t\t'ID': id,\n\t\t\t'Result': result,\n\t\t\t'Operation': operation\n\t\t}\n\t}, function (err, data) {\n\t\tif (err) {\n\t\t\tconsole.log('Fail');\t\n\t\t} else {\n\t\t\tconsole.log('Pass');\n\t\t}\n\t});\n\n\tcallback(null, event);\n}",
+        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\nexports.handler = function (event, context, callback) {\n\n\tconsole.log(\"Received request with payload\", event);\n\tlet operation = event.Operation;\n\tlet id = event.ID;\n\tlet result = null;\n\tswitch (operation) {\n\t\tcase \"Add\":\n\t\t\tresult = event.LeftParameter + event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Subtract\":\n\t\t\tresult = event.LeftParameter - event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Multiply\":\n\t\t\tresult = event.LeftParameter * event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Devide\":\n\t\t\tresult = event.LeftParameter / event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Mod\":\n\t\t\tresult = event.LeftParameter % event.RightParameter;\n\t\t\tbreak;\n\t\tdefault:\n\t\t\tresult = \"Operation Not Permitted\";\n\t\t\tbreak;\n\t}\n\tevent.Result = result;\n\n\tcallback(null, event);\n}",
         "triggers": [
           {
             "resourceName": "apigusEast1KTestCalpost",
@@ -132,7 +132,8 @@
     "projectVersion": "1.0.0",
     "projectRegion": "us-east-1",
     "platform": "AWS",
-    "lastSave": 1542022540877
+    "platformRegions": {},
+    "lastSave": 1545997779395
   },
   "VCS_STATE": {
     "provider": "GitHub",

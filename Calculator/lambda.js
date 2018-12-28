@@ -28,20 +28,5 @@ exports.handler = function (event, context, callback) {
 	}
 	event.Result = result;
 
-	ddb.put({
-		TableName: 'Calculator',
-		Item: {
-			'ID': id,
-			'Result': result,
-			'Operation': operation
-		}
-	}, function (err, data) {
-		if (err) {
-			console.log('Fail');	
-		} else {
-			console.log('Pass');
-		}
-	});
-
 	callback(null, event);
 }
