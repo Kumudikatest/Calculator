@@ -27,7 +27,6 @@ exports.handler = function (event, context, callback) {
 			break;
 	}
 	event.Result = result;
-	console.log("External commit");
-
+	
 	callback(null, event);
 }

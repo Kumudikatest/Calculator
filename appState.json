@@ -17,22 +17,22 @@
         "id": "9a2b4b3b-c64c-4d24-8ef5-66e235f485f4",
         "parent": "b2040dcb-2562-419d-97f1-42b973190396",
         "name": "lambda.js",
-        "type": "LAMBDA_FILE",
+        "type": "JS_LAMBDA",
         "isDirectory": false,
         "children": [],
         "isRemovable": true,
         "filePath": "Calculator/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\nexports.handler = function (event, context, callback) {\n\n\tconsole.log(\"Received request with payload\", event);\n\tlet operation = event.Operation;\n\tlet id = event.ID;\n\tlet result = null;\n\tswitch (operation) {\n\t\tcase \"Add\":\n\t\t\tresult = event.LeftParameter + event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Subtract\":\n\t\t\tresult = event.LeftParameter - event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Multiply\":\n\t\t\tresult = event.LeftParameter * event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Devide\":\n\t\t\tresult = event.LeftParameter / event.RightParameter;\n\t\t\tbreak;\n\t\tcase \"Mod\":\n\t\t\tresult = event.LeftParameter % event.RightParameter;\n\t\t\tbreak;\n\t\tdefault:\n\t\t\tresult = \"Operation Not Permitted\";\n\t\t\tbreak;\n\t}\n\tevent.Result = result;\n\n\tcallback(null, event);\n}",
         "triggers": [
           {
-            "resourceName": "apigusEast1KTestCalpost",
+            "resourceName": "apigKTestCalpost",
             "config": {}
           }
         ],
         "config": {
           "memory": 128,
           "timeout": 60,
-          "runtime": "nodejs8.10"
+          "runtime": "nodejs10.x",
+          "handler": "handler"
         },
         "testCases": {
           "7d911010-fe63-42dc-bba8-b9ff8e2bcf8e": {
@@ -41,10 +41,14 @@
             "functionId": "9a2b4b3b-c64c-4d24-8ef5-66e235f485f4",
             "event": "{\n  \"Operation\": \"Add\",\n  \"LeftParameter\": 200,\n  \"RightParameter\": 400,\n   \"ID\": \"8\"\n}"
           }
+        },
+        "lastUpdated": 1598859553939,
+        "cursor": {
+          "lineNumber": 30,
+          "column": 2
         }
       }
     },
-    "rootNode": "b2040dcb-2562-419d-97f1-42b973190396",
     "openFiles": [
       "9a2b4b3b-c64c-4d24-8ef5-66e235f485f4"
     ],
@@ -83,11 +87,10 @@
         },
         "globallyEditable": false
       },
-      "apigusEast1KTestCalpost": {
-        "name": "apigusEast1KTestCalpost",
+      "apigKTestCalpost": {
+        "name": "apigKTestCalpost",
         "type": "API_GATEWAY",
         "config": {
-          "selectedRegion": "us-east-1",
           "apiMode": 0,
           "apiName": "KTest",
           "endpointType": "EDGE",
@@ -102,6 +105,11 @@
         },
         "globallyEditable": true
       }
+    },
+    "customTemplate": {
+      "dialect": "CloudFormation",
+      "definitions": null,
+      "syntax": "JSON"
     },
     "envVariables": [
       {
@@ -119,21 +127,25 @@
         "aws-sdk": {
           "name": "aws-sdk",
           "version": "2.176.0",
-          "notRemovable": true
+          "notRemovable": true,
+          "language": "nodejs"
         }
       }
     },
+    "rootNode": "b2040dcb-2562-419d-97f1-42b973190396",
     "lambdaId": "9a2b4b3b-c64c-4d24-8ef5-66e235f485f4",
     "additionalFiles": []
   },
   "PROJECT_META": {
+    "sigmaVersion": "1.4.2",
     "projectName": "Calculator",
     "projectDescription": "",
     "projectVersion": "1.0.0",
     "projectRegion": "us-east-1",
     "platform": "AWS",
+    "language": "nodejs",
     "platformRegions": {},
-    "lastSave": 1545997779395
+    "lastSave": 1598859980613
   },
   "VCS_STATE": {
     "provider": "GitHub",
